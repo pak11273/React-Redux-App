@@ -30,16 +30,17 @@ const Stock = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  const { data } = state.stockReducer;
   return {
-    open: state.stockReducer["02. open"],
-    high: state.stockReducer["03. high"],
-    low: state.stockReducer["04. low"],
-    price: state.stockReducer["05. price"],
-    volume: state.stockReducer["06. volume"],
-    latest: state.stockReducer["07. latest trading day"],
-    prev: state.stockReducer["08. previous close"],
-    change: state.stockReducer["09. change"],
-    percent: state.stockReducer["10. change percent"],
+    open: data["02. open"],
+    high: data["03. high"],
+    low: data["04. low"],
+    price: data["05. price"],
+    volume: data["06. volume"],
+    latest: data["07. latest trading day"],
+    prev: data["08. previous close"],
+    change: data["09. change"],
+    percent: data["10. change percent"],
   };
 };
 

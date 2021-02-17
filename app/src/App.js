@@ -28,7 +28,7 @@ function App({ symbol, test }) {
 
 const mapStateToProps = (state) => {
   return {
-    symbol: state.stockReducer["01. symbol"],
+    symbol: state.stockReducer.data["01. symbol"],
   };
 };
 
