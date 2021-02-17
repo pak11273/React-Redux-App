@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { test } from "./actions";
 import { useState } from "react";
 
-function App({ symbol, test }) {
+function App({ isLoading, error, symbol, test }) {
   const [input, setInput] = useState("");
 
   const handleChange = (e) => {
@@ -14,21 +14,31 @@ function App({ symbol, test }) {
   const handleClick = () => {
     test();
   };
-  return (
-    <div>
+
+  const display = (
+    <section>
       <h1>Realtime Stock Info</h1>
       <p>Find a stock. Learn its History.</p>
       <p>Change your future</p>
       <input value={input} placeholder={symbol} onChange={handleChange} />
       <button onClick={handleClick}>Search</button>
       <Stock />
+    </section>
+  );
+
+  return (
+    <div>
+      {isLoading ? <p>Loading...</p> : error ? <p>{error}</p> : display}
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
+  const { error, isLoading, data } = state.stockReducer;
   return {
-    symbol: state.stockReducer.data["01. symbol"],
+    isLoading,
+    error,
+    symbol: data["01. symbol"],
   };
 };
 
