@@ -9,17 +9,19 @@ function App({ isLoading, error }) {
         <p>Find a stock. Learn its History.</p>
         <p>Change your future</p>
       </section>
-      {isLoading ? <p>Loading...</p> : error ? <p>{error}</p> : <Stock />}
+      {/* {isLoading ? <p>Loading...</p> : error ? <p>{error}</p> : <Stock />} */}
+      <Stock />
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
-  const { error, isLoading } = state.stockReducer;
-  return {
-    isLoading,
-    error,
-  };
+  // const { error, isLoading } = state.stockReducer;
+  return {};
+  // return {
+  //   isLoading,
+  //   error,
+  // };
 };
 
 export default connect(mapStateToProps)(App);

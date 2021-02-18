@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+
 import { data } from "../data";
 
 export const GET_STOCK_START = "GET_STOCK_START";
@@ -12,12 +13,10 @@ export const getStock = () => {
     });
 
     setTimeout(() => {
-      if (true) {
-        dispatch({
-          type: GET_STOCK_SUCCESS,
-          payload: data["Global Quote"],
-        });
-      }
+      dispatch({
+        type: GET_STOCK_SUCCESS,
+        payload: data["Global Quote"],
+      });
     }, 3000);
 
     // axios
@@ -34,7 +33,7 @@ export const getStock = () => {
     //     } else {
     //       dispatch({
     //         type: GET_STOCK_SUCCESS,
-    //         payload: res.data,
+    //         payload: res.data["Global Quote"],
     //       });
     //     }
     //   })

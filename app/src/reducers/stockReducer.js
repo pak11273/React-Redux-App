@@ -11,21 +11,19 @@ export const stockReducer = (state = initialState, action) => {
     case GET_STOCK_START:
       return {
         ...state,
-        isLoading: false,
-        error: "",
+        isLoading: true,
       };
     case GET_STOCK_SUCCESS:
       return {
         ...state,
-        isLoading: false,
-        error: "",
         data: action.payload,
+        isLoading: false,
       };
     case GET_STOCK_FAIL:
       return {
         ...state,
-        isLoading: false,
         error: action.error,
+        isLoading: false,
       };
 
     default:

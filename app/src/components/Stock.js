@@ -42,6 +42,7 @@ const Stock = (props) => {
 
 const mapStateToProps = (state) => {
   const { data } = state.stockReducer;
+  console.log("data: ", data);
   return {
     data,
   };
