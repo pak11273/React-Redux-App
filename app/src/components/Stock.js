@@ -1,30 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import { connect } from "react-redux";
+import { getStock } from "../actions";
+import { useState } from "react";
 
 const Stock = (props) => {
-  const {
-    open,
-    high,
-    low,
-    price,
-    volume,
-    latest,
-    prev,
-    change,
-    percent,
-  } = props;
+  useEffect(() => {
+    props.getStock();
+  }, []);
+
+  const [input, setInput] = useState("");
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setInput(value);
+  };
+
+  const handleClick = () => {
+    test();
+  };
+
   return (
     <div>
+      <input value={input} placeholder="Enter Symbol" onChange={handleChange} />
+      <button onClick={handleClick}>Search</button>
       <h2>Stock Info</h2>
-      <p>open: {open}</p>
-      <p>high: {high}</p>
-      <p>low: {low}</p>
-      <p>price: {price}</p>
-      <p>volume: {volume}</p>
-      <p>latest trading day: {latest}</p>
-      <p>previous close: {prev}</p>
-      <p>change: {change}</p>
-      <p>change percent: {percent}</p>
+      <p>open: {props.data && props.data["02. open"]}</p>
+      <p>high: {props.data && props.data["03. high"]}</p>
+      <p>low: {props.data && props.data["04. low"]}</p>
+      <p>price: {props.data && props.data["05. price"]}</p>
+      <p>volume: {props.data && props.data["06. volume"]}</p>
+      <p>
+        latest trading day: {props.data && props.data["07. latest trading day"]}
+      </p>
+      <p>previous close: {props.data && props.data["08. previous close"]}</p>
+      <p>change: {props.data && props.data["09. change"]}</p>
+      <p>change percent: {props.data && props.data["10. percent change"]}</p>
     </div>
   );
 };
@@ -32,16 +43,8 @@ const Stock = (props) => {
 const mapStateToProps = (state) => {
   const { data } = state.stockReducer;
   return {
-    open: data["02. open"],
-    high: data["03. high"],
-    low: data["04. low"],
-    price: data["05. price"],
-    volume: data["06. volume"],
-    latest: data["07. latest trading day"],
-    prev: data["08. previous close"],
-    change: data["09. change"],
-    percent: data["10. change percent"],
+    data,
   };
 };
 
-export default connect(mapStateToProps)(Stock);
+export default connect(mapStateToProps, { getStock })(Stock);
